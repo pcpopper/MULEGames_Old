@@ -1,3 +1,7 @@
-/**
- * Created by pcpopper on 2/28/15.
- */
+require.config({
+    baseUrl: 'js',
+    paths: {
+        'jquery': 'jquery-2.1.3.min',
+        "underscore": 'underscore'
+    }
+});

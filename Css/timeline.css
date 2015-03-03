@@ -1,9 +1,37 @@
 #timelineHolder {
-    width: 2500px;
-    height: 1000px;
+    width: 1000px;
     border: 1px solid black;
     overflow: scroll;
+    padding: 10px;
 }
+
+#timelineContent {
+    position: relative;
+    display: flex;
+}
+.circle {
+    background: #000;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.eventLine {
+    position: relative;
+    padding-bottom: 15px;
+    left: 0px;
+}
+/*.eventLine:after {*/
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 8px;*/
+    /*width: 1px;*/
+    /*background: #0c0;*/
+    /*content: "";*/
+    /*height: 100%;*/
+    /*display: block;*/
+/*}*/
+
+/* Line */
 #timelineLine {
     background: rgb(0,183,234); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(0,183,234,1) 0%, rgba(0,158,195,1) 100%); /* FF3.6+ */
@@ -13,17 +41,65 @@
     background: -ms-linear-gradient(top,  rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* IE10+ */
     background: linear-gradient(to bottom,  rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=0 ); /* IE6-9 */
-}
-#timelineLine img {
-    height: 1px;
-}
-#timelineTimeStamps {
+    height: 16px;
     position: relative;
+    display: flex;
+    margin-left: -10px;
+    padding-left: 10px;
+}
+.timelineTimeStampLine {
+    position: relative;
+    background: black;
+    height: 26px;
+    width: 1px;
+}
+.timelineTimeStampLine:first-child, #timelineTimeStampLine:last-child {
+    height: 50px !important;
+}
+.timelineTimeStampLine:nth-child(5n+1) {
+    height: 36px;
+}
+
+/* Time Stamps */
+#timelineTimeStamps {
     display: flex;
 }
 #timelineTimeStamps div {
+    width: 100px;
+    min-width: 100px;
+    text-align: center;
     position: relative;
 }
-#timelineTimeStampBig {
+/*#timelineTimeStamps div:after {*/
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 0;*/
+    /*width: 1px;*/
+    /*background: #0c0;*/
+    /*content: "";*/
+    /*height: 100%;*/
+    /*display: block;*/
+    /*z-index: 10;*/
+/*}*/
+#timelineTimeStamps div:first-child {
     position: relative;
+    width: 47px !important;
+    min-width: 47px;
+    text-align: left !important;
+    padding-left: 2px;
+}
+#timelineTimeStamps div:last-child {
+    position: relative;
+    width: 31px !important;
+    min-width: 31px;
+    text-align: right !important;
+    padding-top: 20px;
+    font-weight: bold;
+}
+.timelineTimeStampMajor {
+    padding-top: 20px;
+    font-weight: bold;
+}
+.timelineTimeStampMinor {
+    padding-top: 10px;
 }

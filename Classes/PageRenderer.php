@@ -8,27 +8,20 @@
 
 class PageRenderer {
 
-    private $pageHtml = null;
+    public $pageElements = null;
+    public $pageTitle = null;
 
     public function __construct($title) {
-        $this->buildHead($title);
+        $this->pageTitle = $title;
     }
 
-    private function buildHead($title) {
-        $this->pageHtml = "<!DOCTYPE html>\n" .
-        "<html>\n" .
-        "    <head>\n" .
-        "        <title>MULE Games Analytics- $title</title>\n";
-    }
-
-    public function addPageElement() {
-        $args = func_get_args();
-        switch ($args[0]) {
-            case "css":
-                $this->pageHtml .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/$args[1].css\" media=\"screen\">";
+    public function addPageElement($type, $file) {
+        switch ($type) {
+            case 'css':
+                $this->pageElements .= "        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/$file.css\" media=\"screen\">\n";
                 break;
-            case "js":
-                $this->pageHtml .= "<script type=\"text/javascript\" src=\"//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js\"></script>";
+            case 'js':
+                $this->pageElements .= "        <script type=\"text/javascript\" src=\"js/$file.js\"></script>\n";
                 break;
             default:
         }
@@ -39,10 +32,23 @@ class PageRenderer {
     }
 
     public function addPageModal($modal) {
-        $this->pageHtml .= $modal;
+        echo $modal;
     }
 
-    public function renderPage() {
-        echo $this->pageHtml;
+    public function parsePageModal() {
+        $args = func_get_args();
+        $modal = $this->getPageModal($args[0]);
+        $parseArray = $args[1];
+
+        foreach ($parseArray as $item) {
+            $modal = str_replace($item[0], $item[2], $modal);
+            print_r($item[0]);
+        }
+
+        echo $modal;
+    }
+
+    public function includePageModal($modal) {
+        include("Modals/" . basename($modal) . ".php");
     }
 }

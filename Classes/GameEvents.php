@@ -50,7 +50,7 @@ class GameEvents {
             $this->firstTime = $time;
         }
 
-        if ($this > $this->lastTime) {
+        if ($time > $this->lastTime) {
             $this->lastTime = $time;
         }
     }
